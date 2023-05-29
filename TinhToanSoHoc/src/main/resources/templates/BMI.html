@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BMI</title>
+</head>
+<body>
+
+		<form method="Post" action="BMIForm">
+			Nhập chiều cao(cm): <input type="text" name = "h"><br>
+			Nhập cân nặng(kg): <input type="text"name = "w"><br>
+			<input type="submit" value="Tính BMI"/>
+		</form>
+		<span style="font-size: 20px">BMI</span>
+		<span th:text="${bmikq}"/>
+
+</body>
+</html>
