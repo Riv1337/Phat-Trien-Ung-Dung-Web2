@@ -1,0 +1,85 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+
+  height: 100vh;
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  font-family: "Sansita Swashed", cursive;
+}
+.center {
+
+  padding: 50px 50px;
+  background: #fff;
+  border-radius: 10px;
+  margin:auto;
+}
+.center h1 {
+  font-size: 2em;
+  border-left: 5px solid dodgerblue;
+  padding: 10px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+th{
+	text-align:center;
+	border-right: solid 1px black;
+}
+td{
+
+  border-right: solid 1px black;
+}
+tr{
+	text-align:center;	
+}
+table{
+	width:500px;
+	margin-left: auto;
+  	margin-right: auto;
+}
+.box {
+    width:300px;
+    height:300px;
+    background-color:#d9d9d9;
+    position:fixed;
+    margin-left:-150px; /* half of width */
+    margin-top:-150px;  /* half of height */
+    top:50%;
+    left:50%;
+}
+</style>
+<head>
+<title>Trang thông tin</title>
+</head>
+<body>
+<div class="center">
+  <h1>Thông tin nhà xuất bản:</h1>
+  <table>
+  			<tr>
+  			<th>Mã  nhà xuất bản</th>
+           	<th>Tên nhà xuất bản</th>
+            </tr>
+
+            <tr>
+
+            <td th:text="${nhaxuatban.id}"></td>
+            <td th:text="${nhaxuatban.name}"></td>
+
+          </tr>
+
+  
+  </table>
+  </br>
+ <a href="/nhaxuatban">Trở lại danh mục</a>
+ </div>
+</body>
+</html>

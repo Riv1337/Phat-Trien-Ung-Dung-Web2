@@ -38,7 +38,7 @@ class Main(QMainWindow, FORM_CLASS):
         if ten =='':
             msg = QMessageBox() 
             msg.setWindowTitle("Error")
-            msg.setText("Xin nhập mã NV")
+            msg.setText("Xin nhập họ tên")
             msg.exec_()
         else :
             db=sqlite3.connect("QLNV.db")

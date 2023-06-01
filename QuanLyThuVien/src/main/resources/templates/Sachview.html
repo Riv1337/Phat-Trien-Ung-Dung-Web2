@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+
+  height: 100vh;
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  font-family: "Sansita Swashed", cursive;
+}
+.center {
+
+  padding: 50px 50px;
+  background: #fff;
+  border-radius: 10px;
+  margin:auto;
+}
+.center h1 {
+  font-size: 2em;
+  border-left: 5px solid dodgerblue;
+  padding: 10px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+th{
+	text-align:center;
+	border-right: solid 1px black;
+}
+td{
+
+  border-right: solid 1px black;
+}
+tr{
+	text-align:center;	
+}
+
+</style>
+<head>
+<title>Trang thông tin</title>
+</head>
+<body>
+<div class="center">
+  <h1>Thông tin sách:</h1>
+  <table>
+  			<tr>
+  			<th>Mã sách</th>
+           	<th>Tên sách</th>
+            <th>Loại sách</th>
+            <th>Tác giả</th>
+            <th>Nhà xuất bản</th>
+            <th>Giá</th>
+            </tr>
+
+            <tr>
+            <td th:text="${sach.id}"></td>
+            <td th:text="${sach.name}"></td>
+            <td th:text="${sach.loaisach.name}"></td>
+            <td th:text="${sach.tacgia.namea}"></td>
+            <td th:text="${sach.nhaxuatban.name}"></td>
+            <td th:text="${sach.price}"></td>
+          </tr>
+
+  
+  </table>
+ <a href="/sach">Trở lại danh mục</a>
+ </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@600&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+  font-family: "Sansita Swashed", cursive;
+}
+.center {
+  position: relative;
+  padding: 50px 50px;
+  background: #fff;
+  border-radius: 10px;
+}
+.center h1 {
+  font-size: 2em;
+  border-left: 5px solid dodgerblue;
+  padding: 10px;
+  color: #000;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Sách</title>
+</head>
+<body>
+
+<div class="center">
+  <h1>Cập nhật sách:</h1>
+  
+     <form method="post" th:action="@{/update-sach/{id}(id=${sach.id})}">
+     	Mã loại: <input th:field="${sach.id}" readonly="true" /> <br/>
+      Tên Sách: <input th:field="*{sach.name}"/> <br/> <br/>
+      <p>	<label for="loaisach">Loại sách:</label>
+            <select id="loaisach" name="loaisach.id">
+            <option value="">-- Choose Category --</option>
+            <th:block th:each="loaisach: ${loaisach}">
+                <option th:value="${loaisach.id}"
+                    th:selected="${sach.loaisach.id == loaisach.id}" th:text="${loaisach.name}">
+                </option>
+            </th:block>
+        </select>
+        </p>
+      <p>
+            <label for="tacgia">Tác giả:</label>
+        <select id="tacgia" name="tacgia.ida">
+            <option value="">Chọn tác giả...</option>
+            <th:block th:each="tacgia: ${tacgia}">
+                <option th:value="${tacgia.ida}"
+                    th:selected="${sach.tacgia.ida == tacgia.ida}" th:text="${tacgia.namea}">
+                </option>
+            </th:block>
+        </select>
+        </p>
+      <p>
+            <label for="nhaxuatban">Nhà xuất bản:</label>
+        <select id="nhaxuatban" name="nhaxuatban.id">
+            <option value="">Chọn nhà xuất bản...</option>
+            <th:block th:each="nhaxuatban: ${nhaxuatban}">
+                <option th:value="${nhaxuatban.id}"
+                    th:selected="${sach.nhaxuatban.id == nhaxuatban.id}" th:text="${nhaxuatban.name}">
+                </option>
+            </th:block>
+        </select>
+        </p>
+      Giá: <input th:field="*{sach.price}"/> <br/> <br/>
+    <p><input type="submit" value="Save" /></p>
+    <a th:href="@{/sach}">Quay lại danh sách</a><br />
+  </form>
+</div>
+</body>
+</html>
