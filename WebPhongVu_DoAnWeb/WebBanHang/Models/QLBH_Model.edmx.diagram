@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="23f34ac27f90488b89b3c96fb6cf256c" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.CTGH" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.GioHang" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.KhachHang" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.LoaiSP" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.NhanVien" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.SanPham" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__CTGH__MaSP__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__CTGH__SoHD__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__GioHang__MaKH__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__GioHang__MaNVD__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__GioHang__MaNVG__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__SanPham__MaSLP__1273C1CD" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.NhaCungCap" Width="1.5" PointX="3" PointY="13.5" />
+        <EntityTypeShape EntityType="QLBH_QLDA_HTMmartModel.sysdiagram" Width="1.5" PointX="3.375" PointY="5.75" />
+        <AssociationConnector Association="QLBH_QLDA_HTMmartModel.FK__NhaCungCap__MLSP__49C3F6B7" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

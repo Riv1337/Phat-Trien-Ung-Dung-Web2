@@ -1,0 +1,32 @@
+﻿@model WebBanHang.Models.LoaiSP
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Loại sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Tên loại sản phẩm</label>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenLSP)
+        </dd>
+        <dt>
+            <label>Mã sản phẩm</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaLSP)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLSP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

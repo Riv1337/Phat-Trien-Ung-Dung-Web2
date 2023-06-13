@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+}
+
+
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+     <div class="card-deck">
+            <div class="card col-md-3 text-center ">
+                <div class="card-block">
+                    <h4 class="card-title">@item.TenSP</h4>
+                    <img src="~/Public/Images/@item.AnhSP" style="width:150px; height:150px" class="text-center card-img-top img-fluid" alt="...">
+                    <p class="card-text">@item.MoTaSP</p>
+                    <p>Đơn vị tính: @item.DVT </p>
+                    <p>Giá: @item.DonGia.ToString("#,##0").Replace(',', '.') VNĐ</p>
+                        <a href="@Url.Action("ThemVaoGio","GioHangs",new {MaSP=item.MaSP})", id="btnAddToCart",onclick="AddtoCart(this)", class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                    </div>
+                </div>
+            </div>
+
+    }
+</div>
+

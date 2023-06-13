@@ -1,0 +1,74 @@
+﻿@model IEnumerable<WebBanHang.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    string gtinh = "";
+}
+<div class="card">
+    <div class="card-header bg-info">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-uppercase text-danger">Danh sách nhân viên</strong>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="@Url.Action("Create", "NhanViens")" class="btn btn-sm btn-success">
+                    Thêm
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-3">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th style="width:20px;" class="text-center">#</th>
+                    <th>Mã nhân viên</th>
+                    <th>Họ tên Nhân Viên</th>
+                    <th>Ngày sinh</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th>
+                    <th>Giới tính</th>
+                    <th>Administrator</th>
+                    <th style="width:180px;" class="text-center">Chức năng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">
+                            <input name="checkID" type="checkbox" />
+                        </td>
+                        <td>@item.MaNV</td>
+                        <td>@item.HoTen</td>
+                        <td>@item.NgaySinh</td>
+                        <td>@item.Email</td>
+                        <td>@item.MatKhau</td>
+                        <td>
+                            @{if (item.GioiTinh == true)
+                                { gtinh = "Nam"; }
+                                else
+                                { gtinh = "Nữ"; }
+                                                }
+                                                @gtinh
+                                            </td>
+                        <td>@item.Administrator</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit","NhanViens", new {@id=item.MaNV})" class="btn btn-sm btn-info"><i class="fa-solid fa-edit"></i></a>
+
+                            <a href="@Url.Action("Details","NhanViens", new {@id=item.MaNV})" class="btn btn-sm btn-warning"><i class="fa-solid fa-circle-info"></i></a>
+
+                            <a href="@Url.Action("Delete","NhanViens", new {@id=item.MaNV})" class="btn btn-sm btn-danger"> <i class="fa-solid fa-trash"></i></a>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

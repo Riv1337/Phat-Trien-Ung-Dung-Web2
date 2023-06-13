@@ -1,0 +1,117 @@
+﻿@model List<CartItem>
+@using WebBanHang.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout ="~/Views/Shared/_LayoutGuest.cshtml";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="container">
+        <div class="card mx-auto" style="max-width: 380px; margin-top:50px;">
+            <div class="card-body">
+                <h4 class="card-title mb-4">
+                    <p class="text-info text-center">
+                        Giỏ hàng của bạn rỗng!
+                    </p>
+                </h4>
+            </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+
+    </div>
+
+    <br />
+    <br />
+
+}
+else
+{
+    <section class="section-content padding-y">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-9">
+                    <div class="card">
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Sản phẩm</th>
+                                    <th scope="col" width="120">Số lượng</th>
+                                    <th scope="col" width="120">Giá</th>
+                                    <th scope="col" class="text-right" width="200"> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (CartItem item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            <img style="width:150px;"src="~/Public/Images/@item.AnhSP" class="img-fluid" />
+                                        </td>
+                                        <td>
+                                            <form action="@Url.Action("SuaSoLuong")" method="get">
+                                                <input type="hidden" name="MaSP" value="@item.MaSP" />
+                                                <input type="number" min="1" step="1" name="soluongmoi" value="@item.SoLuong" />
+                                                <div style="height: 15px"></div>
+                                                <button type="submit" class="btn btn-success btn-sm"> Cập nhật </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <div>@item.DonGia.ToString("#,##0").Replace(',', '.') VNĐ</div>
+                                             <!-- price-wrap .// -->
+                                        </td>
+                                        <td class="text-right">
+
+                                            <a href="@Url.Action("XoaKhoiGio", new { MaSP = item.MaSP })" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');" class="btn btn-danger btn-sm">Xóa</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                        <div class="card-body border-top">
+                            <a href="@Url.Action("NhapThongTin", "GioHangs")" class="btn btn-success float-md-right"> Thanh toán <i class="fa fa-chevron-right"></i> </a>
+
+                        </div>
+                    </div> <!-- card.// -->
+
+
+
+                </main> <!-- col.// -->
+                <aside class="col-md-3">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    
+                                </div>
+                            </form>
+                        </div> <!-- card-body.// -->
+                    </div>  <!-- card .// -->
+                    <div class="card">
+                        <div class="card-body">
+                            <dl class="dlist-align">
+                                <dt>Tổng số lượng:</dt>
+                                <dd class="text-right">@Model.Sum(m => m.SoLuong)</dd>
+                            </dl>
+                            <dl class="dlist-align">
+                                <dt>Tổng thành tiền:</dt>
+                                <dd class="text-right  h5"><strong>@Model.Sum(m => m.ThanhTien).ToString("#,##0").Replace(',', '.') VNĐ</strong></dd>
+                            </dl>
+
+                            <hr>
+                            
+
+
+                        </div> <!-- card-body.// -->
+                    </div>  <!-- card .// -->
+                </aside> <!-- col.// -->
+            </div>
+
+        </div> <!-- container .//  -->
+    </section>
+
+}
+
+

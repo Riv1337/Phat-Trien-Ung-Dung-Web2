@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DASHBOARD</h2>
+    <div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "NhanViens")" class="btn btn-sm btn-success">
+                    Nhân viên
+                </a>
+                <strong class="text-uppercase text-danger">Danh sách nhân viên  </strong>
+
+            </div>
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "KhachHangs")" class="btn btn-sm btn-success">
+                    Khách hàng
+                </a>
+                <strong class="text-uppercase text-danger">Danh sách khách hàng</strong>
+
+            </div>
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "Product")" class="btn btn-sm btn-success">
+                    Sản phẩm
+                </a>
+                <strong class="text-uppercase text-danger">Danh sách sản phẩm  </strong>
+
+            </div>
+
+            <div class="col-md-12">
+                <a href="@Url.Action("Index", "Category")" class="btn btn-sm btn-success">
+                    Loại sản phẩm
+                </a>
+                <strong class="text-uppercase text-danger">Danh sách loại sản phẩm</strong>
+
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+

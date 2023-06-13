@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLBH_QLDA_HTMmartModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CTGH">
+    <Key>
+      <PropertyRef Name="MaSP" />
+      <PropertyRef Name="SoHD" />
+    </Key>
+    <Property Name="DonGia" Type="Int32" />
+    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoHD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="SanPham" Relationship="Self.FK__CTGH__MaSP__24927208" FromRole="CTGH" ToRole="SanPham" />
+    <NavigationProperty Name="GioHang" Relationship="Self.FK__CTGH__SoHD__25869641" FromRole="CTGH" ToRole="GioHang" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="SoHD" />
+    </Key>
+    <Property Name="SoHD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MaNVD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaNVG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NgayDat" Type="DateTime" Precision="0" />
+    <Property Name="NgayGiao" Type="DateTime" Precision="0" />
+    <Property Name="TinhTrang" Type="Int32" />
+    <NavigationProperty Name="CTGHs" Relationship="Self.FK__CTGH__SoHD__25869641" FromRole="GioHang" ToRole="CTGH" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK__GioHang__MaKH__1BFD2C07" FromRole="GioHang" ToRole="KhachHang" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK__GioHang__MaNVD__1A14E395" FromRole="GioHang" ToRole="NhanVien" />
+    <NavigationProperty Name="NhanVien1" Relationship="Self.FK__GioHang__MaNVG__1B0907CE" FromRole="GioHang" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="GioHangs" Relationship="Self.FK__GioHang__MaKH__1BFD2C07" FromRole="KhachHang" ToRole="GioHang" />
+  </EntityType>
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="MaLSP" />
+    </Key>
+    <Property Name="MaLSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenLSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="SanPhams" Relationship="Self.FK__SanPham__MaSLP__1273C1CD" FromRole="LoaiSP" ToRole="SanPham" />
+    <NavigationProperty Name="NhaCungCaps" Relationship="QLBH_QLDA_HTMmartModel.FK__NhaCungCap__MLSP__49C3F6B7" FromRole="LoaiSP" ToRole="NhaCungCap" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="Administrator" Type="Boolean" />
+    <NavigationProperty Name="GioHangs" Relationship="Self.FK__GioHang__MaNVD__1A14E395" FromRole="NhanVien" ToRole="GioHang" />
+    <NavigationProperty Name="GioHangs1" Relationship="Self.FK__GioHang__MaNVG__1B0907CE" FromRole="NhanVien" ToRole="GioHang" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TenSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnhSP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DVT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DonGia" Type="Int32" />
+    <Property Name="MoTaSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MaSLP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CTGHs" Relationship="Self.FK__CTGH__MaSP__24927208" FromRole="SanPham" ToRole="CTGH" />
+    <NavigationProperty Name="LoaiSP" Relationship="Self.FK__SanPham__MaSLP__1273C1CD" FromRole="SanPham" ToRole="LoaiSP" />
+  </EntityType>
+  <Association Name="FK__CTGH__MaSP__24927208">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="1" />
+    <End Role="CTGH" Type="Self.CTGH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="CTGH">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CTGH__SoHD__25869641">
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="1" />
+    <End Role="CTGH" Type="Self.CTGH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GioHang">
+        <PropertyRef Name="SoHD" />
+      </Principal>
+      <Dependent Role="CTGH">
+        <PropertyRef Name="SoHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GioHang__MaKH__1BFD2C07">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GioHang__MaNVD__1A14E395">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="MaNVD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GioHang__MaNVG__1B0907CE">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="MaNVG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPham__MaSLP__1273C1CD">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLSP" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaSLP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLBH_QLDA_HTMmartEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CTGHs" EntityType="Self.CTGH" />
+    <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="LoaiSPs" EntityType="Self.LoaiSP" />
+    <EntitySet Name="NhanViens" EntityType="Self.NhanVien" />
+    <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+    <AssociationSet Name="FK__CTGH__MaSP__24927208" Association="Self.FK__CTGH__MaSP__24927208">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="CTGH" EntitySet="CTGHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CTGH__SoHD__25869641" Association="Self.FK__CTGH__SoHD__25869641">
+      <End Role="GioHang" EntitySet="GioHangs" />
+      <End Role="CTGH" EntitySet="CTGHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GioHang__MaKH__1BFD2C07" Association="Self.FK__GioHang__MaKH__1BFD2C07">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="GioHang" EntitySet="GioHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GioHang__MaNVD__1A14E395" Association="Self.FK__GioHang__MaNVD__1A14E395">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="GioHang" EntitySet="GioHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GioHang__MaNVG__1B0907CE" Association="Self.FK__GioHang__MaNVG__1B0907CE">
+      <End Role="NhanVien" EntitySet="NhanViens" />
+      <End Role="GioHang" EntitySet="GioHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPham__MaSLP__1273C1CD" Association="Self.FK__SanPham__MaSLP__1273C1CD">
+      <End Role="LoaiSP" EntitySet="LoaiSPs" />
+      <End Role="SanPham" EntitySet="SanPhams" />
+    </AssociationSet>
+    <EntitySet Name="NhaCungCaps" EntityType="QLBH_QLDA_HTMmartModel.NhaCungCap" />
+    <EntitySet Name="sysdiagrams" EntityType="QLBH_QLDA_HTMmartModel.sysdiagram" />
+    <AssociationSet Name="FK__NhaCungCap__MLSP__49C3F6B7" Association="QLBH_QLDA_HTMmartModel.FK__NhaCungCap__MLSP__49C3F6B7">
+      <End Role="LoaiSP" EntitySet="LoaiSPs" />
+      <End Role="NhaCungCap" EntitySet="NhaCungCaps" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="MaNCC" />
+    </Key>
+    <Property Name="MaNCC" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="TenNCC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT_NCC" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MLSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LoaiSP" Relationship="QLBH_QLDA_HTMmartModel.FK__NhaCungCap__MLSP__49C3F6B7" FromRole="NhaCungCap" ToRole="LoaiSP" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__NhaCungCap__MLSP__49C3F6B7">
+    <End Type="QLBH_QLDA_HTMmartModel.LoaiSP" Role="LoaiSP" Multiplicity="0..1" />
+    <End Type="QLBH_QLDA_HTMmartModel.NhaCungCap" Role="NhaCungCap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLSP" />
+      </Principal>
+      <Dependent Role="NhaCungCap">
+        <PropertyRef Name="MLSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

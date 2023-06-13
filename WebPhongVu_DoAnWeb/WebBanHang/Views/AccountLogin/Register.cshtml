@@ -1,0 +1,96 @@
+﻿@model WebBanHang.Models.KhachHang
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+}
+@using (Html.BeginForm("Register", "AccountLogin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold  mb-5 mx-1 mx-md-4 mt-4">Sign up to Phong Vũ</p>
+                                    <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="@Url.Action("Index","AccountLogin")", role="tab"
+                                               aria-controls="pills-login" aria-selected="true">Back to Login</a>
+                                        </li>
+                                        </ul>
+                                        <form class="mx-1 mx-md-4">
+
+
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label>Your Name</label>
+                                                    @Html.TextAreaFor(model => model.HoTen, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label>Email</label>
+                                                    @Html.TextAreaFor(model => model.Email, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-address-card fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label>Address</label>
+                                                    @Html.TextAreaFor(model => model.DiaChi, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-calendar-days fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label>Birthday</label>
+                                                    @Html.TextAreaFor(model => model.NgaySinh, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label>Password</label>
+                                                    @Html.TextAreaFor(model => model.MatKhau, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                <input type="submit" value="Register" id="register" class="btn btn-primary btn-lg">
+
+                                            </div>
+
+                                        </form>
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                    <img src="https://www.skubana.com/hubfs/Skubana/Blog%20Pages/Imported_Blog_Media/ecommerce%20shopping.jpg"
+                                         class="img-fluid" alt="Sample image">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

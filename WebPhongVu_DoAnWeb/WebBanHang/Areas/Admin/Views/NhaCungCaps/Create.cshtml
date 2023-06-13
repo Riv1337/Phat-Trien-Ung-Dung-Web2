@@ -1,0 +1,66 @@
+﻿@model WebBanHang.Models.NhaCungCap
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div class="bg-info py-2">
+        <h4 class="text-white text-center"><strong>Thêm nhà cung cấp</strong></h4>
+    </div>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label>Mã Nhà Cung Cung cấp</label>
+        @Html.TextAreaFor(model => model.MaNCC, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <label>Tên Nhà Cung Cấp</label>
+            @Html.TextAreaFor(model => model.TenNCC, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TenNCC, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Địa Chỉ</label>
+        @Html.TextAreaFor(model => model.DiaChi, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label>SĐT Nhà Cung Cấp</label>
+        @Html.TextAreaFor(model => model.SDT_NCC, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SDT_NCC, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label>Email Nhà Cung Cấp</label>
+        @Html.TextAreaFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label>Mã loại sản phẩm</label>
+        @Html.DropDownListFor(model => model.MLSP, (SelectList)ViewBag.ListMaLSP, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.MLSP, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+   
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

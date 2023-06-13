@@ -1,0 +1,59 @@
+﻿@model WebBanHang.Models.NhaCungCap
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi Tiết</h2>
+
+<div>
+    <h4>Nhà Cung Cấp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Tên nhà cung cấp</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenNCC)
+        </dd>
+
+        <dt>
+            <label>Địa chỉ nhà cung cấp</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            <label>SĐT Nhà cung cấp</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT_NCC)
+        </dd>
+
+        <dt>
+            <label>Email nhà cung cấp</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            <label>Tên loại sản phẩm</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSP.TenLSP)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNCC }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
