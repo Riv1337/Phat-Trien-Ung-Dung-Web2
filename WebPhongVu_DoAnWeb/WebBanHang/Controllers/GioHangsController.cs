@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
+using WebBanHang.ViewModels;
 
 namespace WebBanHang.Controllers
 {
@@ -28,9 +29,15 @@ namespace WebBanHang.Controllers
         public ActionResult NhapThongTin()
         {
             List<CartItem> giohang = Session["giohang"] as List<CartItem>;
-            return View(giohang);
-
+            ClientInfoViewModel clientInfo = new ClientInfoViewModel(); // Initialize with default values
+            CheckoutViewModel checkoutViewModel = new CheckoutViewModel
+            {
+                CartItems = giohang,
+                ClientInfo = clientInfo
+            };
+            return View(checkoutViewModel);
         }
+
 
 
         public RedirectToRouteResult ThemVaoGio(String MaSP)

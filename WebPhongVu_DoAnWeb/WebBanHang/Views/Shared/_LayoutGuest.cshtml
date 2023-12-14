@@ -7,9 +7,36 @@
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <link href="~/Public/CSS/all.min.css" rel="stylesheet" />
     @RenderSection("head", required: false)
+    <style>
+        .chatbot-btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
+        /* Add any additional styles for the chatbox if needed */
+        #chatbox {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
+
     <section class="clearfix header bg-light">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg bg-transparent">
@@ -50,13 +77,53 @@
     <section class="clearfix maincontent">
         <div class="container-fluid py-3"></div>
         @RenderBody()
-    </section>
-    <section class="clearfix footer bg-info">
-        <div class="container-fluid text-white text-center py-3">Richard Baly Kim Hoàng</div>
 
-    </section>
+        <section class="clearfix footer bg-info">
+            <div class="container-fluid text-white text-center py-3">Richard Baly Kim Hoàng</div>
+            <button id="openChatbotBtn" class="chatbot-btn">Open Chatbot</button>
+
+            <!-- Add the chatbox -->
+            <div id="chatbox" style="display: none;">
+                <!-- Your chatbot content goes here -->
+                <div id="chatbox-content"></div>
+                <input type="text" id="userMessage" placeholder="Type your message..." />
+                <button id="sendButton">Send</button>
+            </div>
+
+            <!-- Include jQuery -->
+            <!-- Include jQuery -->
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+            <!-- Add the following JavaScript code -->
+            <script>
+    $(document).ready(function () {
+        // Toggle the chatbox visibility when the button is clicked
+        $("#openChatbotBtn").on("click", function () {
+            console.log("Chatbot button clicked.");
+            $("#chatbox").toggle();
+        });
+
+        $("#sendButton").on("click", function () {
+            console.log("Send button clicked.");
+            var userMessage = $("#userMessage").val();
+            if (userMessage.trim() !== "") {
+                $.ajax({
+    url: "@Url.Action("GetChatbotResponse", "TrangChu")",
+    type: "POST",
+    data: { userMessage: userMessage },
+    success: function (result) {
+        $("#chatbox-content").append("<p>User: " + userMessage + "</p>");
+        $("#chatbox-content").append("<p>Chatbot: " + result.response + "</p>");
+        $("#userMessage").val(""); // Clear the input field
+    },
+    error: function (error) {
+        console.log("AJAX Error:", error);
+        // Handle the error, e.g., display an error message to the user
+    }
+});
+            }
+        });
+    });
+            </script>
 
 
-    @RenderSection("footer", required: false)
-</body>
-</html>

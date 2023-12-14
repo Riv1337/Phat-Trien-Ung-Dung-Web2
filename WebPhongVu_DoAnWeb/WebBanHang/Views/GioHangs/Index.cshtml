@@ -49,12 +49,13 @@ else
                                             <img style="width:150px;"src="~/Public/Images/@item.AnhSP" class="img-fluid" />
                                         </td>
                                         <td>
-                                            <form action="@Url.Action("SuaSoLuong")" method="get">
+                                            <form action="@Url.Action("SuaSoLuong")" method="post">
                                                 <input type="hidden" name="MaSP" value="@item.MaSP" />
                                                 <input type="number" min="1" step="1" name="soluongmoi" value="@item.SoLuong" />
                                                 <div style="height: 15px"></div>
                                                 <button type="submit" class="btn btn-success btn-sm"> Cập nhật </button>
                                             </form>
+
                                         </td>
                                         <td>
                                             <div>@item.DonGia.ToString("#,##0").Replace(',', '.') VNĐ</div>

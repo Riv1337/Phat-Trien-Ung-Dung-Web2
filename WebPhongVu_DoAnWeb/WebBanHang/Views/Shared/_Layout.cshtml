@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <!-- Other head content goes here -->
+</head>
+<body>
+    @RenderBody()
 
-namespace WebBanHang.Views.Shared
-{
-	public class _Layout
-	{
-	}
-}
+    <!-- Other body content goes here -->
+
+    @RenderSection("footer", required: false)
+</body>
+</html>

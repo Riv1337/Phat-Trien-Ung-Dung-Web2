@@ -1,27 +1,54 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
-}
+﻿    @model List<WebBanHang.Models.SanPham>
 
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_LayoutGuest.cshtml";
 
+        // Sort direction: true for ascending (cheapest to most expensive), false for descending
+        bool sortAscending = true;
 
-<div class="container">
-    @foreach (var item in Model)
-    {
-     <div class="card-deck">
-            <div class="card col-md-3 text-center ">
-                <div class="card-block">
-                    <h4 class="card-title">@item.TenSP</h4>
-                    <img src="~/Public/Images/@item.AnhSP" style="width:150px; height:150px" class="text-center card-img-top img-fluid" alt="...">
-                    <p class="card-text">@item.MoTaSP</p>
-                    <p>Đơn vị tính: @item.DVT </p>
-                    <p>Giá: @item.DonGia.ToString("#,##0").Replace(',', '.') VNĐ</p>
-                        <a href="@Url.Action("ThemVaoGio","GioHangs",new {MaSP=item.MaSP})", id="btnAddToCart",onclick="AddtoCart(this)", class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
-                    </div>
+        // Sort the model based on the DonGia property
+        var sortedModel = sortAscending
+            ? Model.OrderBy(item => item.DonGia)
+            : Model.OrderByDescending(item => item.DonGia);
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="productContainer">
+                    @Html.Partial("_ProductList", sortedModel)
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="sortOrder">Sort Order:</label>
+                    <select id="sortOrder" class="form-control" onchange="sortProducts()">
+                        <option value="asc">Cheapest to Most Expensive</option>
+                        <option value="desc">Most Expensive to Cheapest</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        function sortProducts() {
+        var sortOrder = $("#sortOrder").val();
+        var url = "@Url.Action("SortProducts", "TrangChu")";
+
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { sortOrder: sortOrder },
+            success: function (result) {
+                $("#productContainer").html(result);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     }
-</div>
 
+    </script>

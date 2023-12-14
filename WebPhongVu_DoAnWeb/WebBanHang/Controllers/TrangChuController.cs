@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebBanHang.Models;
+using System.Threading.Tasks;
 
 namespace WebBanHang.Controllers
 {
@@ -15,11 +16,77 @@ namespace WebBanHang.Controllers
         private QLBH_QLDA_HTMmartEntities1 db = new QLBH_QLDA_HTMmartEntities1();
 
         // GET: TrangChu
+        private readonly IChatbotService twilioChatService;
+
+        public TrangChuController(IChatbotService twilioChatService)
+        {
+            this.twilioChatService = twilioChatService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetChatbotResponse(string userMessage)
+        {
+            try
+            {
+                // Call the TwilioChatService to get a response
+                string chatbotResponse = await twilioChatService.GetChatbotResponse(userMessage);
+
+                // Return the response as JSON
+                return Json(new { response = chatbotResponse });
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return an error response
+                return Json(new { error = ex.Message });
+            }
+        }
+
+        // Example of sending an SMS message
+        [HttpPost]
+        public async Task<ActionResult> SendMessage(string toPhoneNumber, string message)
+        {
+            try
+            {
+                // Call the TwilioChatService to send an SMS message
+                await twilioChatService.SendMessageAsync(toPhoneNumber, message);
+
+                // Return success response
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return an error response
+                return Json(new { error = ex.Message });
+            }
+        }
+
+
+
+        public ActionResult SortProducts(string sortOrder)
+        {
+            var sanPhams = db.SanPhams.Include(s => s.LoaiSP);
+
+            switch (sortOrder)
+            {
+                case "desc":
+                    sanPhams = sanPhams.OrderByDescending(item => item.DonGia);
+                    break;
+                case "asc":
+                default:
+                    sanPhams = sanPhams.OrderBy(item => item.DonGia);
+                    break;
+            }
+
+            return PartialView("_ProductList", sanPhams.ToList());
+        }
+
         public ActionResult Index()
         {
             var sanPhams = db.SanPhams.Include(s => s.LoaiSP);
             return View(sanPhams.ToList());
         }
+
+
 
         // GET: TrangChu/Details/5
         public ActionResult Details(string id)
